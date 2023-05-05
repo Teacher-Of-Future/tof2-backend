@@ -6,6 +6,9 @@ module.exports = async function () {
     app.get('/', function(req, res) {
         res.send('Hello World! Yes it works!')
     })
+    app.get('/autorize', function(req, res) {
+        res.send('true')
+    })
     app.listen("2023", () => {
         console.log(`Example app listening on port 2023!`)
     })
