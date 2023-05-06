@@ -1,8 +1,6 @@
 {
   "dependencies": {
-    "express": "^4.18.2",
-    "sqlite": "^4.2.0",
-    "sqlite3": "^5.1.6"
+    "express": "^4.18.2"
   },
   "name": "tof2-backend",
   "description": "",
