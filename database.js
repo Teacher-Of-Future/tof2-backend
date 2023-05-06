@@ -1,8 +1,6 @@
 const { sql } = require('@vercel/postgres');
 
 module.exports = async function () {
-    const client = await sql.connect();
-    const { rows } = await client.sql`SELECT datname FROM pg_catalog.pg_database;`;
-    client.release();
+    const { rows } = await sql`SELECT datname FROM pg_catalog.pg_database;`;
     console.log(rows);
 }
