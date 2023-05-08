@@ -5,6 +5,9 @@ console.log("Load express module...");
 require("./express.js")();
 
 console.log("Load database module...");
-require("./database.js")();
+const { connect, query } = require("./database.js");
+connect(config);
 
 console.log("Ready!");
+
+console.log(query("SHOW DATABASES;"))

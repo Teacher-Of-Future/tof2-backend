@@ -1,4 +1,11 @@
 {
     "user": "admin",
-    "password": "examplePassword"
+    "password": "examplePassword",
+    "db": {
+        "host": "localhost",
+        "port": 27017,
+        "user": "example",
+        "password": "examplePassword",
+        "database": "example"
+    }
 }
