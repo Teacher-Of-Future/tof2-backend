@@ -11,5 +11,5 @@ connect(config);
 console.log("Ready!");
 test();
 async function test() {
-console.log(query("SHOW DATABASES;"))
+console.log(await query("SHOW DATABASES;"))
 }
