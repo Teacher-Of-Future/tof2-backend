@@ -11,7 +11,7 @@ module.exports = async function () {
         res.send('true')
     })
     app.get('/article', function(req, res) {
-        if(res.query.id == "") {
+        if(!res.query.id) {
             res.send("[]")
             return;
         }
