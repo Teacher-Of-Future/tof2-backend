@@ -1,4 +1,5 @@
 const express = require('express')
+const { query } = require("./database.js");
 
 module.exports = async function () {
     console.log("Express module loaded!")
@@ -10,7 +11,9 @@ module.exports = async function () {
         res.send('true')
     })
     app.get('/article', function(req, res) {
-        res.send(req.query.id)
+        query(`SELECT * FROM article WHERE ID = ${req.query.id};`).then((result) => {
+            res.send(result)
+        })
     })
     app.listen("2023", () => {
         console.log(`Example app listening on port 2023!`)
