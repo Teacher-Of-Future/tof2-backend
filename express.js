@@ -11,7 +11,8 @@ module.exports = async function () {
         res.send('true')
     })
     app.get('/article', function(req, res) {
-        if(!res.query.id) {
+        var idCheck = res.query.id
+        if(!idCheck) {
             res.send("[]")
             return;
         }
