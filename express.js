@@ -12,8 +12,8 @@ module.exports = async function () {
     })
     app.get('/article', function(req, res) {
         if(!req.query.id == undefined) {
-            res.send("Error: id is undefined"); 
-            return;
+            req.query.id = 0
+            console.log(req.query.id)
         }
         query(`SELECT * FROM article WHERE ID = ${req.query.id};`).then((result) => {
             res.send(result)
