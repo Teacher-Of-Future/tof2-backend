@@ -11,11 +11,10 @@ module.exports = async function () {
         res.send('true')
     })
     app.get('/article', async function(req, res) {
-        if(!req.query.id == undefined) {
-            req.query.id = 0
-            await console.log(req.query.id)
-        }
-        query(`SELECT * FROM article WHERE ID = ${req.query.id};`).then((result) => {
+        var id = req.query.id
+        if(!id) id = 0
+        console.log(id)
+        query(`SELECT * FROM article WHERE ID = ${id};`).then((result) => {
             res.send(result)
         })
     })
