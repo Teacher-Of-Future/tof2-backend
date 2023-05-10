@@ -13,7 +13,6 @@ module.exports = async function () {
     app.get('/article', async function(req, res) {
         var id = req.query.id
         if(!id) id = 0
-        console.log(id)
         query(`SELECT * FROM article WHERE ID = ${id};`).then((result) => {
             res.send(result)
         })
