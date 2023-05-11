@@ -13,12 +13,10 @@ module.exports = async function () {
         res.send('Hello World! Yes it works!')
     })
     app.post('/autorize', function(req, res) {
-        var username = req.query.username
-        var password = req.query.password
+        var username = req.body.username
+        var password = req.body.password
         if(!username) username = "_noUsername"
         if(!password) password = "_noPassword"
-        console.log(username + " ahhhhhh " + password)
-        console.log(config.username + " ahhhhhh " + config.password)
         if(username == config.username && password == config.password) {
             res.send("true")
         } else {
