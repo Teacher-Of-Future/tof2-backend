@@ -1,5 +1,5 @@
 {
-    "user": "admin",
+    "username": "admin",
     "password": "examplePassword",
     "db": {
         "host": "localhost",

@@ -1,5 +1,6 @@
 const express = require('express')
 const { query } = require("./database.js");
+const config = require("./config.json");
 
 module.exports = async function () {
     console.log("Express module loaded!")
@@ -8,7 +9,11 @@ module.exports = async function () {
         res.send('Hello World! Yes it works!')
     })
     app.get('/autorize', function(req, res) {
-        res.send('true')
+        if(req.body.username == config.username && req.body.password == config.password) {
+            res.send("true")
+        } else {
+            res.send("false")
+        }
     })
     app.get('/article', function(req, res) {
         var id = req.query.id
