@@ -6,6 +6,7 @@ const config = require("./config.json");
 module.exports = async function () {
     console.log("Express module loaded!")
     const app = express()
+    app.use(express.json())
     app.use(cors({
         origin: '*'
     }));
