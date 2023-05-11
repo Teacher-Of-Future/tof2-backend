@@ -21,6 +21,7 @@ module.exports = async function () {
             res.send("true")
         } else {
             res.send("false")
+            console.log(res)
         }
     })
     app.get('/article', function(req, res) {
