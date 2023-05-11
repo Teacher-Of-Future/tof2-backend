@@ -1,12 +1,13 @@
 const express = require('express')
 const cors = require('cors');
+var bodyParser = require('body-parser');
 const { query } = require("./database.js");
 const config = require("./config.json");
 
 module.exports = async function () {
     console.log("Express module loaded!")
     const app = express()
-    app.use(express.json())
+    app.use(bodyParser.urlencoded({ extended: false }));
     app.use(cors({
         origin: '*'
     }));
@@ -16,9 +17,9 @@ module.exports = async function () {
     app.post('/autorize', function(req, res) {
         var username = req.body.username
         var password = req.body.password
-        console.log(body)
         if(!username) username = "_Nö"
         if(!password) password = "_Nö"
+        console.log(req.body)
         if(username == config.username && password == config.password) {
             res.send("true")
         } else {
