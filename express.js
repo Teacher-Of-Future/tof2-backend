@@ -12,12 +12,11 @@ module.exports = async function () {
     app.get('/', function(req, res) {
         res.send('Hello World! Yes it works!')
     })
-    app.get('/autorize', async function(req, res) {
+    app.post('/autorize', function(req, res) {
         var username = req.query.username
         var password = req.query.password
         if(!username) username = "_noUsername"
         if(!password) password = "_noPassword"
-        await console.log(await req.query)
         if(username == config.username && password == config.password) {
             res.send("true")
         } else {
