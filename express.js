@@ -1,10 +1,14 @@
 const express = require('express')
+const cors = require('cors');
 const { query } = require("./database.js");
 const config = require("./config.json");
 
 module.exports = async function () {
     console.log("Express module loaded!")
     const app = express()
+    app.use(cors({
+        origin: '*'
+    }));
     app.get('/', function(req, res) {
         res.send('Hello World! Yes it works!')
     })
