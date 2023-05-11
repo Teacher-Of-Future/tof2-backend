@@ -9,7 +9,11 @@ module.exports = async function () {
         res.send('Hello World! Yes it works!')
     })
     app.get('/autorize', function(req, res) {
-        if(req.body.username == config.username && req.body.password == config.password) {
+        var username = req.query.username
+        var password = req.query.password
+        if(!username) username = "_noUsername"
+        if(!password) password = "_noPassword"
+        if(username == config.username && password == config.password) {
             res.send("true")
         } else {
             res.send("false")
