@@ -17,11 +17,11 @@ module.exports = async function () {
         var password = req.query.password
         if(!username) username = "_noUsername"
         if(!password) password = "_noPassword"
+        console.log(req.query)
         if(username == config.username && password == config.password) {
             res.send("true")
         } else {
             res.send("false")
-            console.log(res)
         }
     })
     app.get('/article', function(req, res) {
