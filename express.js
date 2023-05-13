@@ -16,6 +16,7 @@ module.exports = async function () {
         res.send('Hello World! Yes it works!')
     })
     app.post('/autorize', function(req, res) {
+        console.log(req.body)
         var username = req.body.username
         var password = req.body.password
         //if(!username) username = "_Nö"
