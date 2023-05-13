@@ -20,7 +20,6 @@ module.exports = async function () {
         var password = req.body.password
         if(!username) username = "_Nö"
         if(!password) password = "_Nö"
-        console.log(username)
         if(username == config.username && password == config.password) {
             res.send("true")
         } else {
