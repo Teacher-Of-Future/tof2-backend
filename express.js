@@ -16,15 +16,15 @@ module.exports = async function () {
         res.send('Hello World! Yes it works!')
     })
     app.post('/autorize', function(req, res) {
-        var username = req.query.username
-        var password = req.query.password
+        var username = req.body.username
+        var password = req.body.password
         if(!username) username = "_Nö"
         if(!password) password = "_Nö"
-        res.send(String(req.body.username))
+        console.log(username)
         if(username == config.username && password == config.password) {
-            //res.send("true")
+            res.send("true")
         } else {
-            //res.send("false")
+            res.send("false")
         }
     })
     app.get('/article', function(req, res) {
