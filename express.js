@@ -1,11 +1,14 @@
 const express = require('express')
 const cors = require('cors');
+const bodyParser = require('body-parser');
 const { query } = require("./database.js");
 const config = require("./config.json");
 
 module.exports = async function () {
     console.log("Express module loaded!")
     const app = express()
+    app.use(bodyParser.urlencoded({ extended: false }));
+    app.use(bodyParser.json());
     app.use(cors({
         origin: '*'
     }));
@@ -17,10 +20,11 @@ module.exports = async function () {
         var password = req.query.password
         if(!username) username = "_Nö"
         if(!password) password = "_Nö"
+        res.send(req.body)
         if(username == config.username && password == config.password) {
-            res.send("true")
+            //res.send("true")
         } else {
-            res.send("false")
+            //res.send("false")
         }
     })
     app.get('/article', function(req, res) {
