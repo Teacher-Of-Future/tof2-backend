@@ -15,15 +15,31 @@ module.exports = async function () {
     app.get('/', function(req, res) {
         res.send('Hello World! Yes it works!')
     })
-    app.post('/autorize', function(req, res) {
+    app.post('/autorize', async function(req, res) {
         var username = req.body.username
         var password = req.body.password
         if(!username) username = "_Nö"
         if(!password) password = "_Nö"
-        if(username == config.username && password == config.password) {
-            res.send("true")
-        } else {
-            res.send("false")
+        res.send(await autorize(username, password))
+    })
+    app.post('/addarticle', function(req, res) {
+        var username = req.body.username
+        var password = req.body.password
+        if(!username) username = "_Nö"
+        if(!password) password = "_Nö"
+        if(autorize(username, password) == "true") {
+            var title = req.body.title
+            var beschreibung = req.body.beschreibung
+            var katerogie = req.body.katerogie
+            var markdown = req.body.markdown
+            if(!title || !beschreibung || !katerogie || !markdown) {
+                res.send("Missing arguments!")
+                return
+            } else {
+                query(`INSERT INTO article (Title, Beschreibung, Katerogie, Makrdown) VALUES ('${title}', '${beschreibung}', '${katerogie}', '${markdown}');`).then((result) => {
+                    res.send(result)
+                })
+            }
         }
     })
     app.get('/article', function(req, res) {
@@ -41,4 +57,12 @@ module.exports = async function () {
     app.listen("2023", () => {
         console.log(`Example app listening on port 2023!`)
     })
+
+    function autorize(username, password) {
+        if(username == config.username && password == config.password) {
+            return "true";
+        } else {
+            return false;
+        }
+    }
 }
