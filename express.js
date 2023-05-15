@@ -27,12 +27,12 @@ module.exports = async function () {
         var password = req.body.password
         if(!username) username = "_Nö"
         if(!password) password = "_Nö"
-        console.log(req.body)
+        console.log(req.query)
         if(autorize(username, password) == "true") {
-            var title = req.body.title
-            var beschreibung = req.body.beschreibung
-            var katerogie = req.body.katerogie
-            var markdown = req.body.markdown
+            var title = req.query.title
+            var beschreibung = req.query.beschreibung
+            var katerogie = req.query.katerogie
+            var markdown = req.query.markdown
             if(!title || !beschreibung || !katerogie || !markdown) {
                 res.send("Missing arguments!")
                 return
