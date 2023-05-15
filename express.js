@@ -27,7 +27,7 @@ module.exports = async function () {
         var password = req.body.password
         if(!username) username = "_Nö"
         if(!password) password = "_Nö"
-        res.send(req.query)
+        //res.send(req.query)
         if(autorize(username, password) == "true") {
             var title = req.query.title
             var beschreibung = req.query.beschreibung
