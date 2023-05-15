@@ -10,7 +10,7 @@ createTable();
 async function createTable() {
     console.log(await query("DROP TABLE IF EXISTS article;"))
     console.log(await query("CREATE TABLE article (ID int NOT NULL AUTO_INCREMENT, Title varchar(255) NOT NULL, Beschreibung varchar(255) NOT NULL, Katerogie varchar(255) NOT NULL, Makrdown varchar(255) NOT NULL, PRIMARY KEY (ID));"))
-    console.log(await query("INSERT INTO article (Title, Katerogie, Makrdown) VALUES ('Hello Word', 'Test', '# Test');"))
+    console.log(await query("INSERT INTO article (Title, Beschreibung, Katerogie, Makrdown) VALUES ('Hello Word', 'Test', 'Test', '# Test');"))
     console.log(await query("SELECT * FROM article;"))
 
     console.log(await query("DROP TABLE IF EXISTS question;"))
