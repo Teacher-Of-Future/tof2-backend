@@ -27,6 +27,7 @@ module.exports = async function () {
         var password = req.body.password
         if(!username) username = "_Nö"
         if(!password) password = "_Nö"
+        console.log(req.body)
         if(autorize(username, password) == "true") {
             var title = req.body.title
             var beschreibung = req.body.beschreibung
@@ -40,6 +41,8 @@ module.exports = async function () {
                     res.send(result)
                 })
             }
+        } else {
+            res.send("Not autorized!")
         }
     })
     app.get('/article', function(req, res) {
