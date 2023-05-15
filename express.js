@@ -22,13 +22,12 @@ module.exports = async function () {
         if(!password) password = "_Nö"
         res.send(await autorize(username, password))
     })
-    app.post('/addarticle', function(req, res) {
+    app.post('/addarticle', async function(req, res) {
         var username = req.body.username
         var password = req.body.password
         if(!username) username = "_Nö"
         if(!password) password = "_Nö"
-        //res.send(req.query)
-        if(autorize(username, password) == "true") {
+        if(await autorize(username, password) == "true") {
             var title = req.query.title
             var beschreibung = req.query.beschreibung
             var katerogie = req.query.katerogie
@@ -37,7 +36,7 @@ module.exports = async function () {
                 res.send("Missing arguments!")
                 return
             } else {
-                query(`INSERT INTO article (Title, Beschreibung, Katerogie, Makrdown) VALUES ('${title}', '${beschreibung}', '${katerogie}', '${markdown}');`).then((result) => {
+                await query(`INSERT INTO article (Title, Beschreibung, Katerogie, Makrdown) VALUES ('${title}', '${beschreibung}', '${katerogie}', '${markdown}');`).then((result) => {
                     res.send(result)
                 })
             }
