@@ -23,29 +23,66 @@ module.exports = async function () {
         res.send(await autorize(username, password))
     })
     app.post('/addarticle', async function(req, res) {
-        console.log("Input")
         var username = req.body.username
         var password = req.body.password
         if(!username) username = "_Nö"
         if(!password) password = "_Nö"
         if(await autorize(username, password) == "true") {
-            console.log("Autorized!")
             var title = req.query.title
             var beschreibung = req.query.beschreibung
             var katerogie = req.query.katerogie
             var markdown = req.query.markdown
             if(!title || !beschreibung || !katerogie || !markdown) {
-                console.log("Missing arguments!")
                 res.send("Missing arguments!")
                 return
             } else {
-                console.log("Request")
                 await query(`INSERT INTO article (Title, Beschreibung, Katerogie, Makrdown) VALUES ('${title}', '${beschreibung}', '${katerogie}', '${markdown}');`).then((result) => {
                     res.send(result)
                 })
             }
         } else {
-            console.log("Not autorized!")
+            res.send("Not autorized!")
+        }
+    })
+    app.delete('/removearticle', async function(req, res) {
+        var username = req.body.username
+        var password = req.body.password
+        if(!username) username = "_Nö"
+        if(!password) password = "_Nö"
+        if(await autorize(username, password) == "true") {
+            var id = req.query.id
+            if(!id) {
+                res.send("Missing arguments!")
+                return
+            } else {
+                await query(`DELETE FROM article WHERE ID = ${id};`).then((result) => {
+                    res.send(result)
+                })
+            }
+        } else {
+            res.send("Not autorized!")
+        }
+    })
+    app.post('/updatearticle', async function(req, res) {
+        var username = req.body.username
+        var password = req.body.password
+        if(!username) username = "_Nö"
+        if(!password) password = "_Nö"
+        if(await autorize(username, password) == "true") {
+            var title = req.query.title
+            var beschreibung = req.query.beschreibung
+            var katerogie = req.query.katerogie
+            var markdown = req.query.markdown
+            var id = req.query.id
+            if(!title || !beschreibung || !katerogie || !markdown || !id) {
+                res.send("Missing arguments!")
+                return
+            } else {
+                await query(`UPDATE article SET Title = '${title}', Beschreibung = '${beschreibung}', Katerogie = '${katerogie}', Makrdown = '${markdown}' WHERE ID = ${id};`).then((result) => {
+                    res.send(result)
+                })
+            }
+        } else {
             res.send("Not autorized!")
         }
     })
