@@ -98,6 +98,54 @@ module.exports = async function () {
             res.send(result)
         })
     })
+    app.post('/addquestion', async function(req, res) {
+        var username = req.body.username
+        var password = req.body.password
+        if(!username) username = "_Nö"
+        if(!password) password = "_Nö"
+        var frage = req.query.frage
+        var mail = req.query.mail
+        if(!frage || !mail) {
+            res.send("Missing arguments!")
+            return
+        } else {
+            await query(`INSERT INTO question (Frage, Mail) VALUES ('${frage}', '${mail}');`).then((result) => {
+                res.send(result)
+            })
+        }
+    })
+    app.delete('/removequestion', async function(req, res) {
+        var username = req.body.username
+        var password = req.body.password
+        if(!username) username = "_Nö"
+        if(!password) password = "_Nö"
+        if(await autorize(username, password) == "true") {
+            var id = req.query.id
+            if(!id) {
+                res.send("Missing arguments!")
+                return
+            } else {
+                await query(`DELETE FROM question WHERE ID = ${id};`).then((result) => {
+                    res.send(result)
+                })
+            }
+        } else {
+            res.send("Not autorized!")
+        }
+    })
+    app.get('/questions', async function(req, res) {
+        var username = req.body.username
+        var password = req.body.password
+        if(!username) username = "_Nö"
+        if(!password) password = "_Nö"
+        if(await autorize(username, password) == "true") {
+            await query(`SELECT * FROM question;`).then((result) => {
+                res.send(result)
+            })
+        } else {
+            res.send("Not autorized!")
+        }
+    })
     app.listen("2023", () => {
         console.log(`Example app listening on port 2023!`)
     })
