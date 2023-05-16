@@ -99,10 +99,6 @@ module.exports = async function () {
         })
     })
     app.post('/addquestion', async function(req, res) {
-        var username = req.body.username
-        var password = req.body.password
-        if(!username) username = "_Nö"
-        if(!password) password = "_Nö"
         var frage = req.query.frage
         var mail = req.query.mail
         if(!frage || !mail) {
