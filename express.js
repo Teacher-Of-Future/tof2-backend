@@ -129,7 +129,7 @@ module.exports = async function () {
             res.send("Not autorized!")
         }
     })
-    app.get('/questions', async function(req, res) {
+    app.post('/questions', async function(req, res) {
         var username = req.body.username
         var password = req.body.password
         if(!username) username = "_Nö"
