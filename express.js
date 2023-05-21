@@ -37,7 +37,7 @@ module.exports = async function () {
                 return
             } else {
                 await query(`INSERT INTO article (Title, Beschreibung, Katerogie, Makrdown) VALUES ('${title}', '${beschreibung}', '${katerogie}', '${markdown}');`).then((result) => {
-                    res.send("done")
+                    res.send("true")
                 })
             }
         } else {
@@ -56,7 +56,7 @@ module.exports = async function () {
                 return
             } else {
                 await query(`DELETE FROM article WHERE ID = ${id};`).then((result) => {
-                    res.send("done")
+                    res.send("true")
                 })
             }
         } else {
@@ -79,7 +79,7 @@ module.exports = async function () {
                 return
             } else {
                 await query(`UPDATE article SET Title = '${title}', Beschreibung = '${beschreibung}', Katerogie = '${katerogie}', Makrdown = '${markdown}' WHERE ID = ${id};`).then((result) => {
-                    res.send("done")
+                    res.send("true")
                 })
             }
         } else {
@@ -106,7 +106,7 @@ module.exports = async function () {
             return
         } else {
             await query(`INSERT INTO question (Frage, Mail) VALUES ('${frage}', '${mail}');`).then((result) => {
-                res.send("done")
+                res.send("true")
             })
         }
     })
@@ -122,7 +122,7 @@ module.exports = async function () {
                 return
             } else {
                 await query(`DELETE FROM question WHERE ID = ${id};`).then((result) => {
-                    res.send("done")
+                    res.send("true")
                 })
             }
         } else {
